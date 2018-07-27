@@ -13,7 +13,7 @@ var questions = ["What club did Virgil Van Dijk play for before he joined Liverp
                 "What team made a surprise title run in 2015 beating the imfamous 5000-1 odds?",
                 "Which club had to spend the entirety of last season at Wembley Stadium as their home       field underwent a complete remake?",
                 "Which club is famously sponsored by Fly Emirates?",
-                "Which club became the first 'Centurions' by earning over 100 points over the season?",
+                "Which club became the first 'Centurions' by earning over 100 points in a single season?",
                 "Mark noble is the long-time captian of what team?",
                 "Deandre Yedlin, famous American left-back, plays for which team?"
                 ];
