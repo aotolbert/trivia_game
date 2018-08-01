@@ -87,38 +87,69 @@ var timernum = 30;
 
 var intervalId;
 
+var correctanswer = 0;;
+
 
 //PULL QUESTION//
 
-function run() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
-  }
+// function run() {
+//     clearInterval(intervalId);
+//     intervalId = setInterval(decrement, 1000);
+//   }
 
-  function decrement() {
-    timernum--;
-    $("#timer").html("<h4>" + timernum + "</h4>")
-    if (timernum === 0) {
-        alert("You ran out of time!!")
-        $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>The answer was ' + currenta + '. Try to answer faster next time!</h3></div>');
-        setTimeout(sevenSeconds, 1000 * 7);
-        clearInterval(clearInterval);
-        timernum = 37;
-        clearInterval(clearInterval);
-    }
+//   function decrement() {
+//     timernum--;
+//     $("#timer").html("<h4>" + timernum + "</h4>")
+//     if (timernum === 0) {
+//         alert("You ran out of time!!")
+//         $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>The answer was ' + currenta + '. Try to answer faster next time!</h3></div>');
+//         setTimeout(sevenSeconds, 1000 * 7);
+//         clearInterval(clearInterval);
+//      
+//         clearInterval(clearInterval);
+//     }
 
-}
-
-
+// }
 
 
-run();
+
+
+// run();
 
 
 function resetq() {
     
 
+    function run() {
+        timernum = 31;
+        clearInterval(intervalId);
+        intervalId = setInterval(decrement, 1000);
+      }
+    
+      function decrement() {
+    
+        timernum--;
+        $("#timer").html("<h4>" + timernum + "</h4>")
+        if (timernum === 0) {
 
+            timeout();
+        };
+
+
+        function timeout () {
+            alert("You ran out of time!!");
+            $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>The answer was ' + currenta + '. Try to answer faster next time!</h3></div>');
+            setTimeout(sevenSeconds, 1000 * 7);
+            clearInterval(clearInterval);
+
+        }
+    
+    }
+    
+    
+    
+    
+    run();
 
 
     function pullquestion() {
@@ -200,11 +231,13 @@ function resetq() {
 
     }
 
-
+  
 
     resetq();
 
     function sevenSeconds() {
+
+
         $("#answerlist").empty();
         $("#answerlist").append(
             $('<li/>')
@@ -239,7 +272,7 @@ function resetq() {
             console.log("question counter is: " + questioncounter);
 
             if (questioncounter === 9) {
-                alert("Game  over! Press ok to start over");
+                alert("Game over man!! You got " + correctanswer + " questions correct. Press ok to start over");
                 iterator = -1;
             
                 response1 = 0;
@@ -248,43 +281,49 @@ function resetq() {
             
                 response3 = 0;
             
-                currenta = currenta;
-            
                 questioncounter = 0;
             
                 timernum = 30;
             
                 intervalId;
+
+                correctanswer = 0;
+
+                currenta = answers[iterator + 1];
+
+                
             
                 $("#answerlist").empty();
+
                 $("#answerlist").append(
                     $('<li/>')
                     .addClass("border rounded p-3 m-4")
                     .attr('id', "item1")
             
-                        .text("Test")
+                        .text("Error")
                     );
                     $("#answerlist").append(
                         $('<li/>')
                         .addClass("border rounded p-3 m-4")
                         .attr('id', "item2")
             
-                        .text("Test")
+                        .text("Error")
                     );     
                     $("#answerlist").append(
                         $('<li/>')
                         .addClass("border rounded p-3 m-4")
                         .attr('id', "item3")
             
-                        .text("Test")
+                        .text("Error")
                     );     
                     $("#answerlist").append(
                         $('<li/>')
                         .addClass("border rounded p-3 m-4")
                         .attr('id', "item4")
             
-                        .text("Test")
+                        .text("Error")
                     );     
+
             
                     resetq();
 
@@ -305,9 +344,8 @@ function resetq() {
         alert("Nope!!");
         $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
         setTimeout(sevenSeconds, 1000 * 7);
-        clearInterval(clearInterval);
-        timernum = 37;
-        clearInterval(clearInterval);
+        timernum = 8;
+
         
         
     });
@@ -315,10 +353,10 @@ function resetq() {
     $("#wrong1").on("click", function() {
         alert("Nope!!");
         $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
-        setTimeout(sevenSeconds, 1000 * 7);
-        clearInterval(clearInterval);
-        timernum = 37;
-        clearInterval(clearInterval);
+        setTimeout(sevenSeconds, 1000 * 8);
+        timernum = 8;
+
+
         
     });
 
@@ -326,9 +364,9 @@ function resetq() {
         alert("Nope!!");
         $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
         setTimeout(sevenSeconds, 1000 * 7);
-        clearInterval(clearInterval);
-        timernum = 37;
-        clearInterval(clearInterval);
+        timernum = 8;
+
+
         
     });
 
@@ -338,8 +376,9 @@ function resetq() {
         alert("Good Guess!!!");
         $("#answerlist").html('<div class="col-sm-7 mr-5">' + wingifs[(iterator - 1)] + '</div> <div class="row"><h3>Good Guess! The answer was ' + currenta + '</h3></div>');
         setTimeout(sevenSeconds, 1000 * 7);
-        timernum = 37;
-        clearInterval(clearInterval);
+        correctanswer++;
+        console.log(correctanswer);
+        timernum = 8;
 
 
         
@@ -354,9 +393,8 @@ $("#wrong0").on("click", function() {
     alert("Nope!!");
     $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
     setTimeout(sevenSeconds, 1000 * 7);
-    clearInterval(clearInterval)
-    timernum = 37;
-    clearInterval(clearInterval);
+    timernum = 8;
+
     
 });
 
@@ -365,9 +403,8 @@ $("#wrong1").on("click", function() {
     alert("Nope!!");
     $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
     setTimeout(sevenSeconds, 1000 * 7);
-    clearInterval(clearInterval)
-    timernum = 37;
-    clearInterval(clearInterval);
+    timernum = 8;
+
     
 });
 
@@ -376,9 +413,8 @@ $("#wrong2").on("click", function() {
     alert("Nope!!");
     $("#answerlist").html('<div class="col-sm-7 mr-5">' + lossgifs[(iterator - 1)] + '</div> <div class="row"><h3>Oh no... The actual answer was ' + currenta + '</h3></div>');
     setTimeout(sevenSeconds, 1000 * 7);
-    clearInterval(clearInterval)
-    timernum = 37;
-    clearInterval(clearInterval);
+    timernum = 8;
+
     
 });
 
@@ -388,8 +424,10 @@ $("#correct").on("click", function() {
     alert("Good Guess!!!");
     $("#answerlist").html('<div class="col-sm-7 mr-5">' + wingifs[(iterator - 1)] + '</div> <div class="row"><h3>Good Guess! The answer was ' + currenta + '</h3></div>');
     setTimeout(sevenSeconds, 1000 * 7);
-    timernum = 37;
-    clearInterval(clearInterval);
+    correctanswer++;
+    console.log(correctanswer);
+    timernum = 8;
+
 
 
 
